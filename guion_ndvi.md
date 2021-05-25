@@ -10,7 +10,7 @@
 
 ## Objetivos 
 
-En esta práctica se plantéan los siguientes objetivos:
+En esta práctica se plantean los siguientes objetivos:
 
 + Disciplinares: Están relacionados con competencias propias de la ecología.
   + Mejorar nuestra comprensión de los conceptos de estructura y funcionamiento en un ecosistema forestal.
