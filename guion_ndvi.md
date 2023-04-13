@@ -3,14 +3,10 @@
 
 > + **_Versión_**: 2022-2023
 > + **_Asignatura (grado)_**: Ecología II (Biología)
-> + **_Autor_**: Curro Bonet-García (fjbonet@uco.es)
+> + **_Autores_**: Curro Bonet-García (fjbonet@uco.es), Cristina Crespo Bastias (a52crbac@uco.es)
 > + **_Duración_**: 3 horas.
 
 
-
-
-
-**PONER EN EL ESQUEMA GUIÓN LOS NOMBRES DE LAS SECCIONES**
 
 ## Objetivos 
 
@@ -71,7 +67,7 @@ El conjunto de procedimientos de agrupación y análisis de datos que realizarem
 
 
 
-Las siguientes secciones contienen información sobre cómo completar toda la práctica. Sin embargo, pueden realizarse de manera independiente. En las sesiones de este curso solo dio tiempo a realizar la segunda y la tercera sección. Antes de proceder con cualquiera de ellas, debes de hacer lo siguiente:
+Las siguientes secciones contienen información sobre cómo completar toda la práctica. Están ordenados secuencialmente de la 1 a la 4. Sin embargo, pueden realizarse de manera independiente.  Antes de proceder con cualquiera de ellas, debes de hacer lo siguiente:
 
 1. Para las secciones 1, 2 y 3 necesitas descargar [este](https://github.com/aprendiendo-cosas/P_NDVI_UCO_ecologia_II/raw/main/geoinfo/NDVI_maximo_anual.zip) archivo comprimido (NDVI_maximo_anual.zip)  y guárdalo en una carpeta (que no sea el escritorio). Descomprime el archivo zip. Verás muchas imágenes con extensión .tif. Cada una de ellas muestra el valor máximo de NDVI de cada píxel para el año en cuestión. Esto se ha obtenido procesando imágenes del satélite Landsat que pasa por cada punto de la Tierra cada 16 días. Asegúrate de que Windows ha descomprimido correctamente el archivo.
 
@@ -99,12 +95,6 @@ Las siguientes secciones contienen información sobre cómo completar toda la pr
      6. Pega la URL en el campo correspondiente.
      7. Dale a aceptar.
      8. Conéctate al servicio y carga la capa correspondiente.
-     
-     
-
-
-
-
 
 
 ### Sección 1: Serie temporal de NDVI anual: escala interanual
@@ -117,7 +107,7 @@ Seguiremos los siguientes pasos:
 1. Abre Rstudio
 2. Dale al botón archivo y crear nuevo archivo de R.
 3. Guarda el archivo de R en tu directorio de trabajo. Ahora iremos pegando en ese archivo las líneas de código siguientes:
-4. Primero establecemos el directorio de trabajo. Sustituye lo que hay entre comillas por tu ruta. Para acceder a la ruta, usa tu explorador de archivos, ponte sobre la barra de navegación, botón derecho y copiar ruta en modo texto. Ten en cuenta que en windows, cuando copies la ruta de la carpeta, pondrá las barras hacia la izquierda (así: \). Tienes que cambiarlas a mano y ponerlas hacia la derehca (así: /)
+4. Primero establecemos el directorio de trabajo. Sustituye lo que hay entre comillas por tu ruta. Para acceder a la ruta, usa tu explorador de archivos, ponte sobre la barra de navegación, botón derecho y copiar ruta en modo texto. Ten en cuenta que en windows, cuando copies la ruta de la carpeta, pondrá las barras hacia la izquierda (así: \). Tienes que cambiarlas a mano y ponerlas hacia la derehca (así: /). También tienes que cambiar las dobles comillas (") por comillas sencillas (').
 
 ```{r}
 ## Definimos directorio de trabajo y cargamos los paquetes necesarios
@@ -188,7 +178,7 @@ writeRaster(ndvis, filename="ndvi_2000_2021.tif", format="GTiff", overwrite=TRUE
 
 En las gráficas anteriores vemos cómo en algunos píxeles hay una tendencia hacia más NDVI y en otros hacia menos. Esto puede deberse a varios factores ambientales: incendios (caídas bruscas del NDVI), tratamientos forestales de reducción de la densidad (caídas de NDVI) o regeneración natural de la vegetación (aumento sostenido del NDVI). Es posible cuantificar esta tendencia usando un test estadístico llamado Mann Kendall. Este test analiza los valores anuales de NDVI y cuantifica si se ajusta a una línea ascendente o descendente. Si la tendencia es hacia más NDVI, el valor del test será positivo (como máximo de 1). Si la tendencia es negativa, el test arrojará un valor número negativo (mínimo de -1). Procederemos de la siguiente forma:
 
-1. Para completar esta sección debes de hacer también la anterior.
+1. Para completar esta sección debes de haber hecho la anterior.
 1. Volvemos a Rstudio.
 2. Ejecutamos un test estadístico llamado [Mann Kendall](https://www.statisticshowto.datasciencecentral.com/mann-kendall-trend-test/) sobre todas las bandas del objeto multicapa creado anteriormente. Este test permite analizar la evolución temporal de una serie de datos identificando si la tendencia es ascentente o descendente. Es un test no paramétrico, así que puede usarse en todas las distribuciones de datos. Para hacer esto pega el siguiente código en RStudio:
 3. "Encapsulamos" el test estadístico  [Mann Kendall](https://www.rdocumentation.org/packages/Kendall/versions/2.2/topics/MannKendall) en una funciónde R _fun_k_.
@@ -222,15 +212,13 @@ writeRaster(kendal_result$tau, filename="tau.tif", format="GTiff", overwrite=TRU
 
 
 
-
-
 ### Sección 3: NDVI promedio de toda la serie temporal: Cantidad de biomasa fotosintéticamente activa
 
 En primer lugar analizaremos cómo el índice de vegetación es útil para caracterizar la cantidad de biomasa que hay en un lugar determinado. Para ello calcularemos el valor promedio del NDVI máximo anual para todos los píxeles de la zona de estudio. Haremos lo siguiente:
 
-1. Asegúrate de haber completado los dos pasos de la sección anterior.
+1. Asegúrate de tener un proyecto de QGIS con al menos una ortofotografía de fecha reciente.
 
-2. Ahora carga todas las imágenes QGIS. Puedes arrastrar los archivos tif a QGIS o seleccionar "cargar capa raster" del menú "capa". Verás muchas capas en una paleta de colores de escala de grises. Puedes cambiar la paleta a alguna imagen para ver mejor cómo se distribuye el NDVI máximo anual. 
+2. Ahora carga todas las imágenes con los valores de NDVI máximo anual en QGIS. Son las imágenes que has usado en R en la sección anterior. Puedes arrastrar los archivos tif a QGIS o seleccionar "cargar capa raster" del menú "capa". Verás muchas capas en una paleta de colores de escala de grises. Puedes cambiar la paleta a alguna imagen para ver mejor cómo se distribuye el NDVI máximo anual. 
 
 3. A continuación calcularemos el valor promedio de cada año para cada píxel. Abre la calculadora raster del menú "raster". Ahí debes de ir seleccionando todas las capas haciendo click sobre ellas y sumándolas. Luego pon un paréntesis entre todas las capas y divídelo todo por el número de capas. Así obtendremos el valor promedio. Guarda la imagen en tu carpeta y llámale "ndvi_promedio_2000_2021.tif".
 
@@ -322,7 +310,9 @@ Este ejercicio se calificará según los criterios de la siguiente rúbrica:
 
 ## Vídeo de la práctica
 
-El siguiente vídeo muestra la grabación de la práctica que hicimos el día 4 de mayo para el grupo GM-1
+El siguiente vídeo muestra la grabación de la práctica en su versión del curso 2021-2022. Hay algunas cosas que han cambiado. La más importante es el orden en el que se describen las secciones. Así que si utilizas este vídeo como guía, ten eso en cuenta. 
+
+
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yESU9IpmtK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
