@@ -1,12 +1,16 @@
 # Guión de la práctica "caracterización de cambios temporales en el funcionamiento de ecosistemas Mediterráneos mediante teledetección"
 
 
-> + **_Versión_**: 2021-2022
+> + **_Versión_**: 2022-2023
 > + **_Asignatura (grado)_**: Ecología II (Biología)
 > + **_Autor_**: Curro Bonet-García (fjbonet@uco.es)
 > + **_Duración_**: 3 horas.
 
 
+
+
+
+**PONER EN EL ESQUEMA GUIÓN LOS NOMBRES DE LAS SECCIONES**
 
 ## Objetivos 
 
@@ -38,9 +42,9 @@ Los satélites pueden detectar y cuantificar la actividad fotosintética porque 
 
 De manera más concreta, durante esta sesión haremos lo siguiente:
 
-+ Obtener un mapa que muestre el NDVI promedio de cada píxel en la zona de estudio. Relacionaremos este valor promedio de NDVI con los datos de densidad del bosque observada mediante fotografías aéreas.
 + Generar una gráfica que muestre los cambios del NDVI (y por tanto de la actividad fotosintética) a lo largo del tiempo (desde 2000 a 2021) usando una escala interanual (un valor de NDVI al año)
 + Cuantificar la tendencia de la serie de NDVI interanual observada la zona de estudio. Analizaremos si cada punto de 30x30 m ha experimentado en el periodo analizado, un aumento de NDVI, un descenso o si se ha mantenido estable. 
++ Obtener un mapa que muestre el NDVI promedio de cada píxel en la zona de estudio. Relacionaremos este valor promedio de NDVI con los datos de densidad del bosque observada mediante fotografías aéreas.
 + Generar una gráfica que muestre los cambios del NDVI (y por tanto de la actividad fotosintética) a escala mensual (intranual) en el año 2000.
 
 
@@ -98,25 +102,12 @@ Las siguientes secciones contienen información sobre cómo completar toda la pr
      
      
 
-### Sección 1: NDVI promedio de toda la serie temporal: Cantidad de biomasa fotosintéticamente activa
-
-En primer lugar analizaremos cómo el índice de vegetación es útil para caracterizar la cantidad de biomasa que hay en un lugar determinado. Para ello calcularemos el valor promedio del NDVI máximo anual para todos los píxeles de la zona de estudio. Haremos lo siguiente:
-
-1. Asegúrate de haber completado los dos pasos de la sección anterior.
-2. Ahora carga todas las imágenes QGIS. Puedes arrastrar los archivos tif a QGIS o seleccionar "cargar capa raster" del menú "capa". Verás muchas capas en una paleta de colores de escala de grises. Puedes cambiar la paleta a alguna imagen para ver mejor cómo se distribuye el NDVI máximo anual. 
-4. A continuación calcularemos el valor promedio de cada año para cada píxel. Abre la calculadora raster del menú "raster". Ahí debes de ir seleccionando todas las capas haciendo click sobre ellas y sumándolas. Luego pon un paréntesis entre todas las capas y divídelo todo por el número de capas. Así obtendremos el valor promedio. Guarda la imagen en tu carpeta y llámale "ndvi_promedio_2000_2021.tif".
-4. Acabado el cálculo, se cargará la imagen automáticamente. Una vez que esto ocurra, represéntala con la paleta de colores "greens". Como siempre: doble click sobre la capa, pestaña de estilo o simbología (dependiendo de tu versión de QGIS), "single band pseudocolor". Ponla también algo transparente (50%) para que se vea la ortofoto de fondo.
-4. Si no has conseguido hacer el proceso, no te preocupes, [aquí](https://github.com/aprendiendo-cosas/P_NDVI_UCO_ecologia_II/raw/main/geoinfo/ndvi_promedio_2000_2021.tif) puedes descargar el resultado que deberías haber obtenido. 
-5. Ahora observa el mapa y responde a las siguientes preguntas (ojo, estas preguntas no son el ejercicio que has de entregar, sino preguntas para que pienses...):
-
-     + ¿Dónde es más alto el NDVI en una zona boscosa o en otra con matorral?
-
-     + El NDVI se mide en unidades adimensionales. Piensa una forma de relacionar estos valores con la densidad media en campo y expresada en árboles/hectárea.
 
 
 
 
-### Sección 2: Serie temporal de NDVI anual: escala interanual
+
+### Sección 1: Serie temporal de NDVI anual: escala interanual
 
 Este flujo de trabajo está también explicado en [este](https://youtu.be/22dlKcNa_SI) vídeo. La idea es generar una gráfica que muestre los valores máximos anuales de NDVI en cada píxel. Esto nos permitirá conocer cómo cambia el NDVI a lo largo de los 22 años que estamos estudiando. Veremos el impacto de las sequías o de los incendios forestales, por ejemplo. 
 
@@ -193,7 +184,7 @@ writeRaster(ndvis, filename="ndvi_2000_2021.tif", format="GTiff", overwrite=TRUE
 
 
 
-### Sección 3: Cuantificación de la tendencia en la serie de NDVI anual: escala interanual
+### Sección 2: Cuantificación de la tendencia en la serie de NDVI anual: escala interanual
 
 En las gráficas anteriores vemos cómo en algunos píxeles hay una tendencia hacia más NDVI y en otros hacia menos. Esto puede deberse a varios factores ambientales: incendios (caídas bruscas del NDVI), tratamientos forestales de reducción de la densidad (caídas de NDVI) o regeneración natural de la vegetación (aumento sostenido del NDVI). Es posible cuantificar esta tendencia usando un test estadístico llamado Mann Kendall. Este test analiza los valores anuales de NDVI y cuantifica si se ajusta a una línea ascendente o descendente. Si la tendencia es hacia más NDVI, el valor del test será positivo (como máximo de 1). Si la tendencia es negativa, el test arrojará un valor número negativo (mínimo de -1). Procederemos de la siguiente forma:
 
@@ -230,6 +221,30 @@ writeRaster(kendal_result$tau, filename="tau.tif", format="GTiff", overwrite=TRU
    * ¿se corresponden los valores de tau con lo que ves en la gráfica?
 
 
+
+
+
+### Sección 3: NDVI promedio de toda la serie temporal: Cantidad de biomasa fotosintéticamente activa
+
+En primer lugar analizaremos cómo el índice de vegetación es útil para caracterizar la cantidad de biomasa que hay en un lugar determinado. Para ello calcularemos el valor promedio del NDVI máximo anual para todos los píxeles de la zona de estudio. Haremos lo siguiente:
+
+1. Asegúrate de haber completado los dos pasos de la sección anterior.
+
+2. Ahora carga todas las imágenes QGIS. Puedes arrastrar los archivos tif a QGIS o seleccionar "cargar capa raster" del menú "capa". Verás muchas capas en una paleta de colores de escala de grises. Puedes cambiar la paleta a alguna imagen para ver mejor cómo se distribuye el NDVI máximo anual. 
+
+3. A continuación calcularemos el valor promedio de cada año para cada píxel. Abre la calculadora raster del menú "raster". Ahí debes de ir seleccionando todas las capas haciendo click sobre ellas y sumándolas. Luego pon un paréntesis entre todas las capas y divídelo todo por el número de capas. Así obtendremos el valor promedio. Guarda la imagen en tu carpeta y llámale "ndvi_promedio_2000_2021.tif".
+
+4. Acabado el cálculo, se cargará la imagen automáticamente. Una vez que esto ocurra, represéntala con la paleta de colores "greens". Como siempre: doble click sobre la capa, pestaña de estilo o simbología (dependiendo de tu versión de QGIS), "single band pseudocolor". Ponla también algo transparente (50%) para que se vea la ortofoto de fondo.
+
+5. Si no has conseguido hacer el proceso, no te preocupes, [aquí](https://github.com/aprendiendo-cosas/P_NDVI_UCO_ecologia_II/raw/main/geoinfo/ndvi_promedio_2000_2021.tif) puedes descargar el resultado que deberías haber obtenido. 
+
+6. Ahora observa el mapa y responde a las siguientes preguntas (ojo, estas preguntas no son el ejercicio que has de entregar, sino preguntas para que pienses...):
+
+   + ¿Dónde es más alto el NDVI en una zona boscosa o en otra con matorral?
+
+   + El NDVI se mide en unidades adimensionales. Piensa una forma de relacionar estos valores con la densidad media en campo y expresada en árboles/hectárea.
+
+   
 
 ### Sección 4: Estacionalidad en el NDVI: escala intraanual
 
