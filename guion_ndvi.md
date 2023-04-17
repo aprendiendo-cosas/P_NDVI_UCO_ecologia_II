@@ -67,7 +67,7 @@ El conjunto de procedimientos de agrupación y análisis de datos que realizarem
 
 
 
-Las siguientes secciones contienen información sobre cómo completar toda la práctica. Están ordenados secuencialmente de la 1 a la 4. Sin embargo, pueden realizarse de manera independiente.  Antes de proceder con cualquiera de ellas, debes de hacer lo siguiente:
+Las siguientes secciones contienen información sobre cómo completar toda la práctica. Están ordenados secuencialmente de la 1 a la 4. Sin embargo, pueden realizarse de manera independiente.  Seguramente no de tiempo en clase a completar todas las secciones. Para completar el ejercicio que hay al final de este guión y para alcanzar la mayoría de los objetivos de aprendizaje, basta con abordar las dos primeras secciones. Antes de proceder con cualquiera de ellas, debes de hacer lo siguiente:
 
 1. Para las secciones 1, 2 y 3 necesitas descargar [este](https://github.com/aprendiendo-cosas/P_NDVI_UCO_ecologia_II/raw/2022-2023/geoinfo/NDVI_maximo_anual.zip) archivo comprimido (NDVI_maximo_anual.zip)  y guárdalo en una carpeta (que no sea el escritorio). Descomprime el archivo zip. Verás muchas imágenes con extensión .tif. Cada una de ellas muestra el valor máximo de NDVI de cada píxel para el año en cuestión. Esto se ha obtenido procesando imágenes del satélite Landsat que pasa por cada punto de la Tierra cada 16 días. Asegúrate de que Windows ha descomprimido correctamente el archivo.
 
@@ -95,6 +95,21 @@ Las siguientes secciones contienen información sobre cómo completar toda la pr
      6. Pega la URL en el campo correspondiente.
      7. Dale a aceptar.
      8. Conéctate al servicio y carga la capa correspondiente.
+
+
+
+## Software necesario para hacer la práctica
+
+Usaremos las siguientes herramientas. Todas ellas están instaladas en las aulas de la UCO. Pero si quieres usar tu ordenador para hacer la práctica tienes que instalarlas:
+
++ QGIS. [Aquí](https://www.qgis.org/en/site/forusers/download.html) puedes descargar distintas versiones de QGIS para Windows y para Mac. 
+
++ R y Rstudio.
+
+  + Primero debes de instalar R. [https://cran.rstudio.com/](https://cran.rstudio.com/) tienes el enlace de descarga. Sigue las instrucciones en función del sistema operativo que tengas en tu ordenador. 
+  + Rstudio. En [esta](https://posit.co/download/rstudio-desktop/) página selecciona la opción "Download Rstudio Desktop for..." en función del sistema operativo de tu ordenador.
+
+  
 
 
 ### Sección 1: Serie temporal de NDVI anual: escala interanual
@@ -242,11 +257,11 @@ En esta última parte de la práctica cambiaremos de escala. Ahora, en lugar de 
 2. Selecciona la capa **_ndvi_2000_mensual.tif_** en QGIS.
 3. Haz click en el botón del plugin que hemos usado antes para generar la gráfica de toda la serie temporal. Dale al botón "add layer" para añadir a la herramienta la capa que queremos.
 4. Haz click en la pestaña _settings_ que sale abajo y selecciona la opción "Time" del desplegable que hay bajo "X-axis steps". Vamos a hacer que en el eje X de la gráfica aparezcan los meses. Pon 2000 en el año de inicio (Time frame start). Luego cambia en el desplegable el "time size frame" y selecciona "mes". Esto solo funciona en las versiones recientes de QGIS, no en la que usamos nosotros (2.16). En el caso de la versión 2.6 hacemos lo siguiente: en la pestaña *settings* selecciona la opción "string". Allí debes de teclear cada mes separado por punto y coma, así: 1;2;3; etc.  
-5. Observa la imagen que ves abajo y haz zoom a las zonas marcadas como 1 y 2 cuando el profesor diga.
+5. Observa la imagen que ves abajo y haz zoom en la zona indicada. Verás un bosque de *Quercus pyrenaica* al oeste (hoja caduca) y un pinar de repoblación (hoja perenne) al este. 
 
 
 
-![sierranevada](https://github.com/aprendiendo-cosas/P_NDVI_UCO_ecologia_II/raw/2022-2023/imagenes/sierranevada.png)
+![sierranevada](https://github.com/aprendiendo-cosas/P_NDVI_UCO_ecologia_II/raw/main/imagenes/sierranevada.png)
 
 
 
